@@ -8,3 +8,4 @@ RUN docker-php-ext-enable redis
 RUN sh -c '/bin/echo -e "no\nyes\n/usr\nno\nyes\nno\nyes\nno" | pecl install event'
 RUN docker-php-ext-enable event
 RUN docker-php-source delete
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
