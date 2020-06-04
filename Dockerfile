@@ -32,6 +32,6 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "/php.ini"
 
 #用workerman用户来运行容器
 RUN groupadd -g 1000 workerman
-RUN useradd -g dev -u 1000 workerman
+RUN useradd -g workerman -u 1000 workerman
 
 USER workerman
