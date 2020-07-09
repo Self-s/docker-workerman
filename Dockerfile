@@ -34,16 +34,13 @@ RUN apt-get install git -y
 
 RUN php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.phar');"  \
      && mv composer.phar /usr/local/bin/composer \
-     && chmod +x /usr/local/bin/composer
-
-RUN mkdir /workdir
-
+     && chmod +x /usr/local/bin/composer \
+     && mkdir /workdir \
+     && groupadd -g 1000 workerman \
+     && useradd -g workerman -u 1000 workerman -m \
+     && chown workerman:workerman /workdir
+     
 WORKDIR /workdir
-
-
-RUN groupadd -g 1000 workerman
-RUN useradd -g workerman -u 1000 workerman -m
-RUN chown workerman:workerman /workdir
 
 #用workerman用户来运行容器
 USER workerman
