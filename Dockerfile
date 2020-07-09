@@ -13,38 +13,41 @@ RUN apt-get update
 #安装必要的扩展 扩展posix已经默认开启 还需要pcntl sockets
 RUN docker-php-ext-install pcntl sockets
 
-#安装event event扩展依赖libevent-dev
-RUN apt-get install libevent-dev -y
-RUN sh -c '/bin/echo -e "no\nyes\n/usr\nno\nyes\nno\nyes\nno" | pecl install event'
-RUN docker-php-ext-enable event
-
-#安装pdo_mysql扩展 不需要可以不安装
-RUN docker-php-ext-install pdo_mysql
+#安装event event扩展需要依赖libevent-dev
+RUN apt-get install libevent-dev -y \
+     && sh -c '/bin/echo -e "no\nyes\n/usr\nno\nyes\nno\nyes\nno" | pecl install event' \
+     && docker-php-ext-enable event
 
 #安装redis扩展 不需要可以不安装
-RUN pecl install redis
-RUN docker-php-ext-enable redis
+RUN pecl install redis \
+     && docker-php-ext-enable redis
 
+#安装pdo_mysql redis扩展 不需要可以不安装
+RUN docker-php-ext-install pdo_mysql
+
+#清理文件
 RUN docker-php-source delete
 
 #启用正式环境的php.ini配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "/php.ini"
 
-RUN apt-get install git -y
-
-RUN php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.phar');"  \
+#安装composer
+RUN apt-get install git unzip -y \
+     && php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.phar');"  \
      && mv composer.phar /usr/local/bin/composer \
-     && chmod +x /usr/local/bin/composer \
-     && mkdir /workdir \
-     && groupadd -g 1000 workerman \
+     && chmod +x /usr/local/bin/composer
+     
+RUN  groupadd -g 1000 workerman \
      && useradd -g workerman -u 1000 workerman -m \
+     && mkdir /workdir \
      && chown workerman:workerman /workdir
- 
-RUN apt-get install unzip -y
-
+     
 WORKDIR /workdir
 
 #用workerman用户来运行容器
 USER workerman
 
+#配置composer阿里云全量镜像
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
+
