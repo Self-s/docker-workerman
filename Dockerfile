@@ -34,8 +34,6 @@ RUN php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.
      && mv composer.phar /usr/local/bin/composer \
      && chmod +x /usr/local/bin/composer
 
-RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-
 RUN mkdir /workdir
 
 WORKDIR /workdir
@@ -45,3 +43,5 @@ RUN groupadd -g 1000 workerman
 RUN useradd -g workerman -u 1000 workerman -m
 
 USER workerman
+
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
