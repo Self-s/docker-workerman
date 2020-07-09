@@ -38,10 +38,12 @@ RUN mkdir /workdir
 
 WORKDIR /workdir
 
-#用workerman用户来运行容器
+
 RUN groupadd -g 1000 workerman
 RUN useradd -g workerman -u 1000 workerman -m
+RUN chown workerman:workerman /workdir
 
+#用workerman用户来运行容器
 USER workerman
 
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
