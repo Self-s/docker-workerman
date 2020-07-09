@@ -30,6 +30,16 @@ RUN docker-php-source delete
 #启用正式环境的php.ini配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "/php.ini"
 
+RUN php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.phar');"  \
+     && mv composer.phar /usr/local/bin/composer \
+     && chmod +x /usr/local/bin/composer
+
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
+RUN mkdir /workdir
+
+WORKDIR /workdir
+
 #用workerman用户来运行容器
 RUN groupadd -g 1000 workerman
 RUN useradd -g workerman -u 1000 workerman
