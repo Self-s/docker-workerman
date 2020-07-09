@@ -39,7 +39,9 @@ RUN php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.
      && groupadd -g 1000 workerman \
      && useradd -g workerman -u 1000 workerman -m \
      && chown workerman:workerman /workdir
-     
+ 
+RUN apt-get install unzip -y
+
 WORKDIR /workdir
 
 #用workerman用户来运行容器
