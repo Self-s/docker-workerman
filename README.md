@@ -3,10 +3,10 @@
 ##  included php extensions: redis mysql event
 ##  add composer
 
-    docker run -dit --name workerman -v /your/project/path:/workdir imagename php start.php
+    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php
 
 
-    docker run -dit --name workerman -v /your/project/path:/workdir imagename php start.php -d \
+    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php -d \
         && tail -f /dev/stdout
 
 
