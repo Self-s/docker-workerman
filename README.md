@@ -10,10 +10,10 @@ put workerman framework into your project path or run
 
 then 
 
-    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php
+    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php start
 
 
-    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php -d \
+    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php start -d \
         && tail -f /dev/stdout
 
 
