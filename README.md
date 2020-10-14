@@ -1,8 +1,8 @@
-**[中文](#运行workerman的完整php环境-docker镜像)**
+**[中文](#workerman的完整php环境-docker镜像)**
 **[English](#PHP-environment-for-workerman-docker-image)**
 
 <span id="chinese"></span>
-# 运行workerman的完整php环境 docker镜像
+# workerman的完整php环境 docker镜像
 
 ### 已安装的php扩展: `redis mysql event`
 ### 已安装的工具: `git composer`
@@ -11,9 +11,9 @@
 
 | 容器              | 描述 |
 |---------------------|-------------|
-| /workdir | default WORKDIR for container |
+| /workdir | 容器默认工作目录 |
 
-#### 出于安全考虑，容器并没有运行以root身份运行，默认的运行用户是 `workerman` (uid=1000,gid=1000)，socket的监听端口必须大于1024。
+#### 出于安全考虑，容器并没有以root身份运行，默认的运行用户是 `workerman` (uid=1000,gid=1000)，socket的监听端口必须大于1024。
 
 #### 1. 同步文件权限
 
