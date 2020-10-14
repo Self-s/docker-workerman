@@ -1,7 +1,7 @@
-**[中文](#workerman的完整php环境-docker镜像)**
-**[English](#PHP-environment-for-workerman-docker-image)**
+**[中文](#workerman的php生产环境-docker镜像)**
+**[English](#PHP-production-environment-for-workerman-docker-image)**
 
-# workerman的完整php环境 docker镜像
+# workerman的php生产环境 docker镜像
 
 ### 已安装的php扩展: `redis mysql event`
 ### 已安装的工具: `git composer`
@@ -60,7 +60,7 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 ```
 
 
-# PHP environment for workerman docker image
+# PHP production environment for workerman docker image
 
 ### Installed PHP extensions: `redis mysql event`
 ### Installed Tools: `git composer`
