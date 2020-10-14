@@ -35,15 +35,10 @@ RUN apt-get install git unzip -y \
      && chmod +x /usr/local/bin/composer \
      && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
-# 清理文件
-RUN docker-php-source delete \
-     && apt-get clean \
-     && rm -rf /tmp/* /var/cache/* /var/www/html/*
-
 RUN  groupadd -g 1000 workerman \
      && useradd -c workerman -g workerman -u 1000 workerman -m
 
-# 启动参数
+# 脚本参数
 ENV MY_USER=workerman
 ENV MY_GROUP=workerman
 
@@ -52,9 +47,14 @@ COPY ./data/docker-entrypoint.d /docker-entrypoint.d
 COPY ./data/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 RUN /docker-entrypoint.sh
-RUN rm -rf /docker-entrypoint.d /docker-entrypoint.sh
 
+# 清理文件
+RUN docker-php-source delete \
+     && apt-get clean \
+     && rm -rf /tmp/* /var/cache/* /var/www/html/* /docker-entrypoint.d /docker-entrypoint.sh
+
+#使用非root用户来运行容器
 USER workerman
 
-CMD ['tail','-f','/dev/stdout']
+CMD ["/usr/bin/tail", "-f", "/dev/stdout"]
 
