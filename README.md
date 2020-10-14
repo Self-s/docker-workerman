@@ -19,9 +19,12 @@
 
 
 #### 1. 获取workerman框架(如果已有workerman框架，可以跳过此步)
-
-    docker run -it --rm --net=host -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman
-
+```bash
+$ docker run -it --rm --net=host \
+        -v /your/project/path:/workdir \
+        jaredlee/workerman \
+        composer require workerman/workerman
+```
 
 #### 2. 启动workerman项目
 ```bash
@@ -78,12 +81,12 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 
 
 #### 1. Get workerman framework(skip this if you already has workerman framework)
-
-    docker run -it --rm --net=host \
+```bash
+$ docker run -it --rm --net=host \
         -v /your/project/path:/workdir \
         jaredlee/workerman \
         composer require workerman/workerman
-
+```
 
 #### 2. Start your workerman project
 ```bash
