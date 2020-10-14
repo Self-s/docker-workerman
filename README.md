@@ -14,8 +14,8 @@
 |----------|------|---------|-------------|
 | DEBUG_ENTRYPOINT    | int    | `0`     | 输出容器启动阶段的设置与运行的命令。<br/>取值:<br/>`0`: 关闭输出<br/>`1`: 只输出设置<br/>`2`: 输出所有设置与运行的命令 |
 | TIMEZONE            | string | `UTC`   | 设置容器的时区。<br/>(例如: `Asia/Shanghai`) |
-| NEW_UID             | int    | `1000`   | 给容器内默认运行用户设置一个新uid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户uid，可统一容器内与本地的文件权限。(运行 `id` 命令 查看当前用户uid)。|
-| NEW_GID             | int    | `1000`   | 给容器内默认运行用户组设置一个新gid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户组gid，可统一容器内与本地的文件权限。(运行 `id` 命令 查看当前用户组gid)。 |
+| NEW_UID             | int    | `1000`   | 给容器内默认运行用户设置一个新uid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户uid，可统一容器内与本地的文件权限。(运行 `id -u` 命令 查看当前用户uid)。|
+| NEW_GID             | int    | `1000`   | 给容器内默认运行用户组设置一个新gid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户组gid，可统一容器内与本地的文件权限。(运行 `id -g` 命令 查看当前用户组gid)。 |
 
 
 #### 1. 获取workerman框架(如果已有workerman框架，可以跳过此步)
@@ -73,8 +73,8 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 |----------|------|---------|-------------|
 | DEBUG_ENTRYPOINT    | int    | `0`     | Show settings and shell commands executed during startup.<br/>Values:<br/>`0`: Off<br/>`1`: Show settings<br/>`2`: Show settings and commands |
 | TIMEZONE            | string | `UTC`   | Set docker OS timezone.<br/>(Example: `Europe/Berlin`) |
-| NEW_UID             | int    | `1000`   | Assign the default Nginx user a new UID. This is useful if you you mount your document root and want to match the file permissions to the one of your local user. Set it to your host users uid (see `id` for your uid). |
-| NEW_GID             | int    | `1000`   | This is useful if you you mount your document root and want to match the file permissions to the one of your local user group. Set it to your host user groups gid (see `id` for your gid). |
+| NEW_UID             | int    | `1000`   | Assign the default Nginx user a new UID. This is useful if you you mount your document root and want to match the file permissions to the one of your local user. Set it to your host users uid (see `id -u` for your uid). |
+| NEW_GID             | int    | `1000`   | This is useful if you you mount your document root and want to match the file permissions to the one of your local user group. Set it to your host user groups gid (see `id -g` for your gid). |
 
 
 #### 1. Get workerman framework(skip this if you already has workerman framework)
