@@ -10,6 +10,7 @@
 | /workdir | default WORKDIR for container |
 
 #### For security reason,container is not running as root, the defalut user runs in container is `workerman` (uid=1000,gid=1000)
+#### And socket can only listen on ports above 1024 with non-root privilege
 
 #### 1. Fix permissions
 
