@@ -3,6 +3,7 @@
 # included php extensions: redis mysql event
 # included composer
 
+path '/workdir' is the default WORKDIR for container
 
 using composer to get workerman framework 
 
