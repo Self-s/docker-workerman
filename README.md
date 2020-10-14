@@ -1,7 +1,7 @@
 # PHP environment for workerman docker image
 
-### PHP extensions: redis mysql event is loaded
-### git composer is installed
+### Installed PHP extensions: `redis mysql event`
+### Installed Tools: `git composer`
 
 #### Available mount points
 
