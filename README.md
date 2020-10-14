@@ -8,7 +8,7 @@
 
 #### 出于安全考虑，容器并没有以root身份运行，默认的运行用户是 `workerman` (uid=1000,gid=1000)，socket的监听端口必须大于1024。
 
-##### 可选环境参数
+#### 可选环境参数
 
 | 变量名 | 类型 | 默认值 | 描述 |
 |----------|------|---------|-------------|
@@ -67,7 +67,7 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 
 #### For security reason, container is not running as root, the defalut user runs in container is `workerman` (uid=1000,gid=1000) and sockets can only listen to ports above 1024
 
-##### Optional environmental variables
+#### Optional environmental variables
 
 | Variable | Type | Default | Description |
 |----------|------|---------|-------------|
