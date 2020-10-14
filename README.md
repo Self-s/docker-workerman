@@ -30,14 +30,29 @@
 
 # 以普通模式运行
 
-$ docker run -d --net=host --name workerman -e DEBUG_ENTRYPOINT=1 -e NEW_UID=$(id -u) -e NEW_GID=$(id -g) -e TIMEZONE=Asia/Shanghai -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start
+$ docker run -d --net=host --name workerman \
+        -e DEBUG_ENTRYPOINT=1 \
+        -e NEW_UID=$(id -u) \
+        -e NEW_GID=$(id -g) \
+        -e TIMEZONE=Asia/Shanghai \
+        -v /your/project/path:/workdir \
+        jaredlee/workerman \
+        php /workdir/your_project_start_file_path start
 
 # 检查普通模式的log输出
 $ docker logs workerman
 
 
 # 以后台daemon模式运行
-$ docker run -d --net=host --name workerman -e DEBUG_ENTRYPOINT=1 -e NEW_UID=$(id -u) -e NEW_GID=$(id -g) -e TIMEZONE=Asia/Shanghai -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout
+$ docker run -d --net=host --name workerman \
+        -e DEBUG_ENTRYPOINT=1 \
+        -e NEW_UID=$(id -u) \
+        -e NEW_GID=$(id -g) \
+        -e TIMEZONE=Asia/Shanghai \
+        -v /your/project/path:/workdir \
+        jaredlee/workerman \
+        tail -f /dev/stdout
+
 $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 
 # 检查daemon模式的log输出
@@ -64,20 +79,41 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 
 #### 1. Get workerman framework(skip this if you already has workerman framework)
 
-    docker run -it --rm --net=host -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman
+    docker run -it --rm --net=host \
+        -v /your/project/path:/workdir \
+        jaredlee/workerman \
+        composer require workerman/workerman
 
 
 #### 2. Start your workerman project
 ```bash
+# id -u get current user uid
+# id -g get current user group gid
+
 # Start in normal mode
-$ docker run -d --net=host --name workerman -e DEBUG_ENTRYPOINT=1 -e NEW_UID=$(id -u) -e NEW_GID=$(id -g) -e TIMEZONE=Asia/Shanghai -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start
+$ docker run -d --net=host --name workerman \
+        -e DEBUG_ENTRYPOINT=1 \
+        -e NEW_UID=$(id -u) \
+        -e NEW_GID=$(id -g) \
+        -e TIMEZONE=Asia/Shanghai \
+        -v /your/project/path:/workdir \
+        jaredlee/workerman \
+        php /workdir/your_project_start_file_path start
 
 # Check logs in normal mode
 $ docker logs workerman
 
 
 # Start in daemon mode
-$ docker run -d --net=host --name workerman -e DEBUG_ENTRYPOINT=1 -e NEW_UID=$(id -u) -e NEW_GID=$(id -g) -e TIMEZONE=Asia/Shanghai -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout
+$ docker run -d --net=host --name workerman \
+        -e DEBUG_ENTRYPOINT=1 \
+        -e NEW_UID=$(id -u) \
+        -e NEW_GID=$(id -g) \
+        -e TIMEZONE=Asia/Shanghai \
+        -v /your/project/path:/workdir \
+        jaredlee/workerman \
+        tail -f /dev/stdout
+
 $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 
 # Check logs in daemon mode
