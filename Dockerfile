@@ -41,7 +41,7 @@ RUN docker-php-source delete \
      && rm -rf /tmp/* /var/cache/* /var/www/html/*
 
 RUN  groupadd -g 1000 workerman \
-     && useradd -g workerman -u 1000 workerman -m
+     && useradd -c workerman -g workerman -u 1000 workerman -m
 
 # 启动参数
 ENV MY_USER=workerman
