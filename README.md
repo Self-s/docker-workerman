@@ -28,6 +28,7 @@ $ docker run -d --net=host --name workerman -v /your/project/path:/workdir jared
 # check logs 
 $ docker logs workerman
 
+
 # Start in daemon mode
 $ docker run -d --net=host --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout
 $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
