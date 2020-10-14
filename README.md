@@ -1,4 +1,6 @@
-**[中文](#chinese 运行workerman的完整php环境 docker镜像)**
+**[中文](#chinese)**
+
+<span id="chinese"></span>
 # 运行workerman的完整php环境 docker镜像
 
 ### 已安装的php扩展: `redis mysql event`
