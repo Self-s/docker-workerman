@@ -1,7 +1,7 @@
-# php environment for workerman 
-# php extensions: redis mysql event is installed
+# PHP environment for workerman docker image
 
-### composer is included
+### PHP extensions: redis mysql event is loaded
+### PHP dependency Manager: composer is installed
 
 #### Available mount points
 
@@ -9,8 +9,7 @@
 |---------------------|-------------|
 | /workdir | default WORKDIR for container |
 
-#### For security reason,container is not running as root, the defalut user runs in container is `workerman` (uid=1000,gid=1000)
-#### And socket can only listen on ports above 1024 with non-root privilege
+#### For security reason, container is not running as root, the defalut user runs in container is `workerman` (uid=1000,gid=1000) and sockets can only listen to ports above 1024
 
 #### 1. Fix permissions
 
