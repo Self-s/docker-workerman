@@ -52,3 +52,5 @@ set_timezone "TIMEZONE" "${DEBUG_LEVEL}"
 ### Change running user
 ###
 su workerman
+
+tail -f /dev/stdout
