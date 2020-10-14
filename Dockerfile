@@ -3,7 +3,7 @@
 
 #只要在php官方镜像基础上开启那些workerman需要的模块就可以了
 #开启需要的模块可以用php官方镜像里提供的命令docker-php-ext-install
-#redis和event扩张 自带命令不能安装 用pecl安装
+#redis和event扩展 自带命令不能安装 用pecl安装
 
 FROM php
 MAINTAINER 741162948@qq.com
