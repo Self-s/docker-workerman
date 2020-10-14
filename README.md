@@ -4,18 +4,20 @@
 # included composer
 
 
-put workerman framework into your project path or run 
+using composer to get workerman framework 
 
-    `docker run -dit --name workerman -v /your/project/path:/workdir imagename composer require workerman/workerman` 
+    `docker run -dit --name workerman -v /your/project/path:/workdir jaredlee/workerman
+ composer require workerman/workerman` 
 
-then 
+start your workerman project 
 
-    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php start
+    docker run -dit --name workerman -v /your/project/path:/workdir jaredlee/workerman
+ php youfile.php start
 
-
-    docker run -dit --name workerman -v /your/project/path:/workdir imagename php youfile.php start -d \
+running in daemon mode
+    docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman
+ php youfile.php start -d \
         && tail -f /dev/stdout
 
-
-    docker run -d —name=workerman —net=host -v ~/project/workerman:/workdir imagename tail -f /dev/stdout \
-        && docker exec -it imagename php youfile.php start -d
+    docker run -d —name=workerman —net=host -v ~/project/workerman:/workdir jaredlee/workerman tail -f /dev/stdout \
+        && docker exec -it jaredlee/workerman php /workdir/your_project_start_file_path start -d
