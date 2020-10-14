@@ -1,3 +1,6 @@
+**[中文](#chinese)**
+
+# 中文
 # 运行workerman的完整php环境 docker镜像
 
 ### 已安装的php扩展: `redis mysql event`
@@ -7,11 +10,11 @@
 
 | 容器              | 描述 |
 |---------------------|-------------|
-| /workdir | 容器内的默认工作目录 |
+| /workdir | default WORKDIR for container |
 
 #### 出于安全考虑，容器并没有运行以root身份运行，默认的运行用户是 `workerman` (uid=1000,gid=1000)，socket的监听端口必须大于1024。
 
-#### 1. 修复权限
+#### 1. 同步文件权限
 
     chown -R /your/project/path 1000:1000
 
@@ -51,7 +54,7 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 
 #### For security reason, container is not running as root, the defalut user runs in container is `workerman` (uid=1000,gid=1000) and sockets can only listen to ports above 1024
 
-#### 1. Fix permissions
+#### 1. synchronize file permissions
 
     chown -R /your/project/path 1000:1000
 
