@@ -11,29 +11,22 @@
 
 #### For security reason,container is not running as root, the defalut user runs in container is `workerman`
 
-#### Run 
+#### 1. fix permissions
 
     `chown -R /your/project/path 1000:1000` 
 
-#### To fix permissions
 
 
-#### Run 
+
+#### 2. Get workerman framework(skip this if you already have workerman framework)
 
     `docker run -it --rm -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman` 
 
-#### To get workerman framework
 
-
-#### Run 
+#### 3. Start your workerman project 
+     In interactive mode  
 
     `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start` 
   
-#### To start your workerman project in interactive mode 
-
-
-#### Run 
-
+    In daemon mode
     `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout && docker exec -it workerman php /workdir/your_project_start_file_path start -d` 
-
-#### To start your workerman project in daemon mode
