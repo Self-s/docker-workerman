@@ -47,11 +47,14 @@ RUN  groupadd -g 1000 workerman \
 ENV MY_USER=workerman
 ENV MY_GROUP=workerman
 
-# 复制启动脚本
-RUN rm -rf /docker-entrypoint.d /docker-entrypoint.sh
+# 配置脚本
 COPY ./data/docker-entrypoint.d /docker-entrypoint.d
 COPY ./data/docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+RUN /docker-entrypoint.sh
+RUN rm -rf /docker-entrypoint.d /docker-entrypoint.sh
 
+USER workerman
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ['tail','-f','/dev/stdout']
 

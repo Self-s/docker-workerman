@@ -47,10 +47,3 @@ set_gid "NEW_GID" "${MY_GROUP}" "${DEBUG_LEVEL}"
 ### Set timezone
 ###
 set_timezone "TIMEZONE" "${DEBUG_LEVEL}"
-
-###
-### Change running user
-###
-su workerman
-
-exec tail -f /dev/stdout
