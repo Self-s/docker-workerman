@@ -26,7 +26,8 @@ RUN pecl install redis \
 RUN docker-php-ext-install pdo_mysql
 
 #清理文件
-RUN docker-php-source delete
+RUN docker-php-source delete \
+     && rm -r /tmp/* /var/cache/* /var/www/html/*
 
 #启用正式环境的php.ini配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
