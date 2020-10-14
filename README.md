@@ -16,5 +16,4 @@
 
 #### run `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start` to start your workerman project in interactive mode 
 
-#### run `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout \ 
-    && docker exec -it workerman php /workdir/your_project_start_file_path start -d` to start your workerman project in daemon mode
+#### run `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout && docker exec -it workerman php /workdir/your_project_start_file_path start -d` to start your workerman project in daemon mode
