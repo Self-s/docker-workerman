@@ -1,9 +1,15 @@
-# docker-workerman
 # php environment for workerman 
-# included php extensions: redis mysql event
-# included composer
+# php extensions: redis mysql event is installed
 
-path '/workdir' is the default WORKDIR for container
+### composer is included
+
+#### Available mount points
+
+| Docker              | Description |
+|---------------------|-------------|
+| /workdir | default WORKDIR for container |
+
+
 
 using composer to get workerman framework 
 
