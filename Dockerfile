@@ -25,10 +25,6 @@ RUN pecl install redis \
 #安装pdo_mysql redis扩展 不需要可以不安装
 RUN docker-php-ext-install pdo_mysql
 
-#清理文件
-RUN docker-php-source delete \
-     && rm -rf /tmp/* /var/cache/* /var/www/html/*
-
 #启用正式环境的php.ini配置文件
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
@@ -37,6 +33,11 @@ RUN apt-get install git unzip -y \
      && php -r "copy('https://mirrors.aliyun.com/composer/composer.phar', 'composer.phar');"  \
      && mv composer.phar /usr/local/bin/composer \
      && chmod +x /usr/local/bin/composer
+     
+#清理文件
+RUN docker-php-source delete \
+     && apt-get clean \
+     && rm -rf /tmp/* /var/cache/* /var/www/html/*
      
 RUN  groupadd -g 1000 workerman \
      && useradd -g workerman -u 1000 workerman -m \
