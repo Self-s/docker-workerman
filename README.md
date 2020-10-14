@@ -14,7 +14,7 @@
 |----------|------|---------|-------------|
 | DEBUG_ENTRYPOINT    | int    | `0`     | 输出容器启动阶段的设置与运行的命令。<br/>取值:<br/>`0`: 关闭输出<br/>`1`: 只输出设置<br/>`2`: 输出所有设置与运行的命令 |
 | TIMEZONE            | string | `UTC`   | 设置容器的时区。<br/>(例如: `Asia/Shanghai`) |
-| NEW_UID             | int    | `1000`   | 给容器内默认运行用户设置一个新uid<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户uid，可统一容器内与本地的文件权限。(运行 `id` 命令 查看当前用户uid)。|
+| NEW_UID             | int    | `1000`   | 给容器内默认运行用户设置一个新uid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户uid，可统一容器内与本地的文件权限。(运行 `id` 命令 查看当前用户uid)。|
 | NEW_GID             | int    | `1000`   | 给容器内默认运行用户组设置一个新gid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户组gid，可统一容器内与本地的文件权限。(运行 `id` 命令 查看当前用户组gid)。 |
 
 
@@ -25,7 +25,11 @@
 
 #### 2. 启动workerman项目
 ```bash
+# id -u 获取当前用户uid
+# id -g 获取当前用户组gid
+
 # 以普通模式运行
+
 $ docker run -d --net=host --name workerman -e DEBUG_ENTRYPOINT=1 -e NEW_UID=$(id -u) -e NEW_GID=$(id -g) -e TIMEZONE=Asia/Shanghai -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start
 
 # 检查普通模式的log输出
