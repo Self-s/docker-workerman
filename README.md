@@ -14,7 +14,10 @@ start your workerman project
  php youfile.php start`
 
 running in daemon mode
+
     `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start -d && tail -f /dev/stdout`
+
 or
+
     `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout \ 
     && docker exec -it workerman php /workdir/your_project_start_file_path start -d`
