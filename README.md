@@ -22,10 +22,16 @@
 
 #### 3. Start your workerman project 
 ```bash
-# Start in interactive mode  
+# Start in normal mode  
 $ docker run -d --net=host --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start
+
+# check logs 
+$ docker logs workerman
 
 # Start in daemon mode
 $ docker run -d --net=host --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout
 $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
+
+#check logs 
+#see log files in your project path
 ```
