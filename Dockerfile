@@ -29,7 +29,7 @@ RUN docker-php-ext-install pdo_mysql
 RUN docker-php-source delete
 
 #启用正式环境的php.ini配置文件
-RUN mv "$PHP_INI_DIR/php.ini-production" "/php.ini"
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 #安装composer
 RUN apt-get install git unzip -y \
