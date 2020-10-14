@@ -53,4 +53,4 @@ set_timezone "TIMEZONE" "${DEBUG_LEVEL}"
 ###
 su workerman
 
-tail -f /dev/stdout
+exec tail -f /dev/stdout

@@ -17,29 +17,30 @@
 | NEW_UID             | int    | `1000`   | 给容器内默认运行用户设置一个新uid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户uid，可统一容器内与本地的文件权限。(运行 `id -u` 命令 查看当前用户uid)。|
 | NEW_GID             | int    | `1000`   | 给容器内默认运行用户组设置一个新gid。<br/>当挂载了本地目录到容器内部时，设置该参数为本地用户组gid，可统一容器内与本地的文件权限。(运行 `id -g` 命令 查看当前用户组gid)。 |
 
-
-#### 1. 获取workerman框架(如果已有workerman框架，可以跳过此步)
+#### 1. 运行workerman容器
 ```bash
-$ docker run -it --rm --net=host \
-        -v /your/project/path:/workdir \
-        jaredlee/workerman \
+$ docker run -d --net=host --name workerman \
+        -e DEBUG_ENTRYPOINT=1 \
+        -e NEW_UID=$(id -u) \
+        -e NEW_GID=$(id -g) \
+        -e TIMEZONE=Asia/Shanghai \
+        jaredlee/workerman
+```
+
+#### 2. 获取workerman框架(如果已有workerman框架，可以跳过此步)
+```bash
+$ docker exec -it workerman \
         composer require workerman/workerman
 ```
 
-#### 2. 启动workerman项目
+#### 3. 启动workerman项目
 ```bash
 # id -u 获取当前用户uid
 # id -g 获取当前用户组gid
 
 # 以普通模式运行
 
-$ docker run -d --net=host --name workerman \
-        -e DEBUG_ENTRYPOINT=1 \
-        -e NEW_UID=$(id -u) \
-        -e NEW_GID=$(id -g) \
-        -e TIMEZONE=Asia/Shanghai \
-        -v /your/project/path:/workdir \
-        jaredlee/workerman \
+$ docker exec -it workerman \
         php /workdir/your_project_start_file_path start
 
 # 检查普通模式的log输出
@@ -47,16 +48,8 @@ $ docker logs workerman
 
 
 # 以后台daemon模式运行
-$ docker run -d --net=host --name workerman \
-        -e DEBUG_ENTRYPOINT=1 \
-        -e NEW_UID=$(id -u) \
-        -e NEW_GID=$(id -g) \
-        -e TIMEZONE=Asia/Shanghai \
-        -v /your/project/path:/workdir \
-        jaredlee/workerman \
-        tail -f /dev/stdout
-
-$ docker exec -it workerman php /workdir/your_project_start_file_path start -d
+$ docker exec -it workerman \
+        php /workdir/your_project_start_file_path start -d
 
 # 检查daemon模式的log输出
 # daemon模式的log输出位于项目目录下的log文件内
@@ -79,28 +72,29 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 | NEW_UID             | int    | `1000`   | Assign the default Nginx user a new UID. This is useful if you you mount your document root and want to match the file permissions to the one of your local user. Set it to your host users uid (see `id -u` for your uid). |
 | NEW_GID             | int    | `1000`   | This is useful if you you mount your document root and want to match the file permissions to the one of your local user group. Set it to your host user groups gid (see `id -g` for your gid). |
 
-
-#### 1. Get workerman framework(skip this if you already has workerman framework)
+#### 1. Startup a container
 ```bash
-$ docker run -it --rm --net=host \
-        -v /your/project/path:/workdir \
-        jaredlee/workerman \
+$ docker run -d --net=host --name workerman \
+        -e DEBUG_ENTRYPOINT=1 \
+        -e NEW_UID=$(id -u) \
+        -e NEW_GID=$(id -g) \
+        -e TIMEZONE=Europe/Berlin \
+        jaredlee/workerman
+```
+
+#### 2. Get workerman framework(skip this if you already has workerman framework)
+```bash
+$ docker exec -it workerman \
         composer require workerman/workerman
 ```
 
-#### 2. Start your workerman project
+#### 3. Start your workerman project
 ```bash
 # id -u get current user uid
 # id -g get current user group gid
 
 # Start in normal mode
-$ docker run -d --net=host --name workerman \
-        -e DEBUG_ENTRYPOINT=1 \
-        -e NEW_UID=$(id -u) \
-        -e NEW_GID=$(id -g) \
-        -e TIMEZONE=Asia/Shanghai \
-        -v /your/project/path:/workdir \
-        jaredlee/workerman \
+$ docker exec -it workerman \
         php /workdir/your_project_start_file_path start
 
 # Check logs in normal mode
@@ -108,16 +102,8 @@ $ docker logs workerman
 
 
 # Start in daemon mode
-$ docker run -d --net=host --name workerman \
-        -e DEBUG_ENTRYPOINT=1 \
-        -e NEW_UID=$(id -u) \
-        -e NEW_GID=$(id -g) \
-        -e TIMEZONE=Asia/Shanghai \
-        -v /your/project/path:/workdir \
-        jaredlee/workerman \
-        tail -f /dev/stdout
-
-$ docker exec -it workerman php /workdir/your_project_start_file_path start -d
+$ docker exec -it workerman \
+        php /workdir/your_project_start_file_path start -d
 
 # Check logs in daemon mode
 # See log files in your project path
