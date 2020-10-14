@@ -10,8 +10,7 @@ using composer to get workerman framework
 
 start your workerman project 
 
-    `docker run -dit --name workerman -v /your/project/path:/workdir jaredlee/workerman
- php youfile.php start`
+    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start`
 
 running in daemon mode
 
