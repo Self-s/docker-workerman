@@ -12,19 +12,9 @@
 #### The Defalut USER ID and USER GROUP ID in container is 1000
 #### run `chown -R /your/project/path 1000:1000` to fix permissions
 
-using composer to get workerman framework 
+run `docker run -it --rm -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman` and wait to get workerman framework
 
-    `docker run -dit --name workerman -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman` 
+run `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start` to start your workerman project in interactive mode 
 
-start your workerman project 
-
-    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start`
-
-running in daemon mode
-
-    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start -d && tail -f /dev/stdout`
-
-or
-
-    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout \ 
-    && docker exec -it workerman php /workdir/your_project_start_file_path start -d`
+run `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout \ 
+    && docker exec -it workerman php /workdir/your_project_start_file_path start -d` to start your workerman project in daemon mode
