@@ -17,15 +17,15 @@
 
 #### 2. Get workerman framework(skip this if you already has workerman framework)
 
-    docker run -it --rm -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman
+    docker run -it --rm --net=host -v /your/project/path:/workdir jaredlee/workerman composer require workerman/workerman
 
 
 #### 3. Start your workerman project 
 ```bash
 # Start in interactive mode  
-$ docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start
+$ docker run -d --net=host --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start
 
 # Start in daemon mode
-$ docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout
+$ docker run -d --net=host --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout
 $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 ```
