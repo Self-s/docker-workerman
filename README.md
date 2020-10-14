@@ -1,5 +1,5 @@
-**[中文](#chinese)**
-**[English](#english)**
+**[中文](#运行workerman的完整php环境-docker镜像)**
+**[English](#PHP-environment-for-workerman-docker-image)**
 
 <span id="chinese"></span>
 # 运行workerman的完整php环境 docker镜像
@@ -41,7 +41,7 @@ $ docker exec -it workerman php /workdir/your_project_start_file_path start -d
 # daemon模式的log输出位于项目目录下的log文件内
 ```
 
-<span id="english"></span>
+
 # PHP environment for workerman docker image
 
 ### Installed PHP extensions: `redis mysql event`
