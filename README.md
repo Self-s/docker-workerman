@@ -9,14 +9,11 @@
 |---------------------|-------------|
 | /workdir | default WORKDIR for container |
 
-#### For security reason,container is not running as root, the defalut user runs in container is `workerman`
+#### For security reason,container is not running as root, the defalut user runs in container is `workerman` (uid=1000,gid=1000)
 
-#### 1. fix permissions
+#### 1. Fix permissions
 
     `chown -R /your/project/path 1000:1000` 
-
-
-
 
 #### 2. Get workerman framework(skip this if you already has workerman framework)
 
@@ -24,11 +21,12 @@
 
 
 #### 3. Start your workerman project 
-     ##### In interactive mode  
+     In interactive mode  
+     
+    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start`
 
-    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman php /workdir/your_project_start_file_path start` 
- 
- 
+
     In daemon mode
     
-    `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout && docker exec -it workerman php /workdir/your_project_start_file_path start -d` 
+    1. `docker run -d --name workerman -v /your/project/path:/workdir jaredlee/workerman tail -f /dev/stdout`
+    2. `docker exec -it workerman php /workdir/your_project_start_file_path start -d`
